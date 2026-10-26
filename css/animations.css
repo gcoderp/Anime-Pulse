@@ -1,0 +1,74 @@
+/* ============================================================================
+   ANIPULSE — animations.css
+   Keyframes, scroll reveals, micro-interactions
+   ========================================================================== */
+
+@keyframes shimmer { 100% { transform: translateX(100%); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: .25; } }
+
+@keyframes pageIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes navIn { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+@keyframes heroUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes kenburns { from { transform: scale(1.06) translate(0,0); } to { transform: scale(1.14) translate(-1.5%, -1.5%); } }
+
+@keyframes modalIn { from { opacity: 0; transform: translateY(24px) scale(.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes toastIn { from { opacity: 0; transform: translateX(40px) scale(.9); } to { opacity: 1; transform: translateX(0) scale(1); } }
+@keyframes toastOut { to { opacity: 0; transform: translateX(40px) scale(.9); } }
+
+@keyframes iconPulse { 0% { transform: scale(1); } 40% { transform: scale(1.22); } 100% { transform: scale(1); } }
+@keyframes barGrow { from { width: 0 !important; } }
+@keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes glowPulse { 0%,100% { box-shadow: 0 0 18px var(--accent-soft); } 50% { box-shadow: 0 0 34px var(--accent-soft); } }
+@keyframes slideInLeft { from { opacity: 0; transform: translateX(-24px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes popIn { 0% { opacity: 0; transform: scale(.8); } 100% { opacity: 1; transform: scale(1); } }
+
+/* Scroll reveal */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s var(--ease-out), transform .7s var(--ease-out); }
+.reveal.in { opacity: 1; transform: translateY(0); }
+.reveal-l { opacity: 0; transform: translateX(-30px); transition: opacity .7s var(--ease-out), transform .7s var(--ease-out); }
+.reveal-l.in { opacity: 1; transform: translateX(0); }
+
+/* Staggered children */
+.stagger > * { opacity: 0; animation: pageIn .55s var(--ease-out) forwards; }
+.stagger > *:nth-child(1) { animation-delay: .02s; }
+.stagger > *:nth-child(2) { animation-delay: .06s; }
+.stagger > *:nth-child(3) { animation-delay: .10s; }
+.stagger > *:nth-child(4) { animation-delay: .14s; }
+.stagger > *:nth-child(5) { animation-delay: .18s; }
+.stagger > *:nth-child(6) { animation-delay: .22s; }
+.stagger > *:nth-child(7) { animation-delay: .26s; }
+.stagger > *:nth-child(8) { animation-delay: .30s; }
+.stagger > *:nth-child(9) { animation-delay: .34s; }
+.stagger > *:nth-child(10) { animation-delay: .38s; }
+
+/* Hover lift */
+.hover-lift { transition: transform .3s var(--ease-spring), box-shadow .3s var(--ease); }
+.hover-lift:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+
+/* Ambient background blobs */
+.ambient { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; opacity: .5; }
+.ambient i {
+  position: absolute; border-radius: 50%; filter: blur(90px); opacity: .16;
+  background: var(--accent); animation: floatY 16s ease-in-out infinite;
+}
+.ambient i:nth-child(1) { width: 420px; height: 420px; top: -120px; left: -80px; }
+.ambient i:nth-child(2) { width: 360px; height: 360px; bottom: -140px; right: -60px; background: var(--accent-2); animation-delay: -5s; }
+.ambient i:nth-child(3) { width: 300px; height: 300px; top: 40%; left: 55%; animation-delay: -9s; }
+
+/* Card entrance for rails */
+.rail-track > * { animation: pageIn .5s var(--ease-out) both; }
+
+/* Cursor glow (desktop only) */
+.cursor-glow {
+  position: fixed; width: 320px; height: 320px; border-radius: 50%; pointer-events: none; z-index: 1;
+  background: radial-gradient(circle, var(--accent-soft), transparent 65%); opacity: 0;
+  transition: opacity .4s; transform: translate(-50%,-50%); mix-blend-mode: screen;
+}
+@media (hover: hover) and (pointer: fine) { .cursor-glow.on { opacity: .5; } }
+
+/* View transitions */
+::view-transition-old(root) { animation: fadeIn .2s reverse; }
+::view-transition-new(root) { animation: fadeIn .3s; }

@@ -1,0 +1,182 @@
+/* ============================================================================
+   ANIPULSE — layout.css
+   Header, navigation, drawer, bottom nav, page scaffolding
+   ========================================================================== */
+
+/* ------------------------------ PROGRESS -------------------------------- */
+.top-progress {
+  position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  box-shadow: var(--glow); z-index: 2000; transition: width .2s var(--ease);
+  border-radius: 0 3px 3px 0;
+}
+
+/* ------------------------------ OFFLINE --------------------------------- */
+.offline-banner {
+  position: fixed; top: var(--header-h); left: 50%; transform: translateX(-50%) translateY(-140%);
+  background: #b45309; color: #fff; padding: 8px 18px; border-radius: 0 0 12px 12px;
+  font-size: .82rem; font-weight: 600; z-index: 1400; transition: transform .4s var(--ease-spring);
+  box-shadow: var(--shadow-sm);
+}
+.offline-banner.show { transform: translateX(-50%) translateY(0); }
+
+/* ------------------------------- HEADER --------------------------------- */
+#header {
+  position: fixed; top: 0; left: 0; right: 0; height: var(--header-h); z-index: 1200;
+  transition: background .35s var(--ease), border-color .35s var(--ease), backdrop-filter .35s var(--ease);
+  border-bottom: 1px solid transparent;
+}
+#header.scrolled {
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  backdrop-filter: blur(var(--blur)) saturate(150%);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(150%);
+  border-bottom-color: var(--border);
+}
+.header-inner {
+  height: 100%; max-width: var(--maxw); margin: 0 auto;
+  padding: 0 clamp(12px, 3vw, 40px);
+  display: flex; align-items: center; gap: 14px;
+}
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 900; letter-spacing: -.03em; flex: 0 0 auto; }
+.brand-icon {
+  width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: var(--glow); transition: transform .4s var(--ease-spring);
+}
+.brand:hover .brand-icon { transform: rotate(-8deg) scale(1.08); }
+.brand-icon svg { width: 18px; height: 18px; }
+.brand-name { font-size: 1.22rem; }
+.brand-name span { color: var(--accent); }
+
+.main-nav { display: flex; align-items: center; gap: 4px; margin-left: 12px; }
+.main-nav a {
+  position: relative; padding: 8px 14px; border-radius: 10px; font-size: .9rem; font-weight: 600;
+  color: var(--text-2); transition: color .2s, background .2s;
+}
+.main-nav a:hover { color: var(--text); background: var(--surface-2); }
+.main-nav a.active { color: var(--text); }
+.main-nav a.active::after {
+  content: ''; position: absolute; left: 14px; right: 14px; bottom: 2px; height: 2px;
+  background: var(--accent); border-radius: 2px; box-shadow: var(--glow);
+  animation: navIn .35s var(--ease-spring);
+}
+.header-actions { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+
+.icon-btn {
+  width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center;
+  color: var(--text-2); background: transparent; border: 1px solid transparent;
+  transition: all .22s var(--ease);
+}
+.icon-btn:hover { color: var(--text); background: var(--surface-2); border-color: var(--border); transform: translateY(-1px); }
+.icon-btn svg { width: 21px; height: 21px; }
+.icon-btn.pulse { animation: iconPulse .5s var(--ease-spring); }
+
+.avatar-btn {
+  width: 42px; height: 42px; border-radius: 50%; font-weight: 800; font-size: .82rem;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: var(--accent-contrast);
+  box-shadow: var(--glow); transition: transform .3s var(--ease-spring);
+}
+.avatar-btn:hover { transform: scale(1.07); }
+
+/* ------------------------------ DROPDOWN -------------------------------- */
+.dropdown {
+  position: fixed; top: calc(var(--header-h) - 6px); right: clamp(12px, 3vw, 40px);
+  width: 250px; background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); box-shadow: var(--shadow); padding: 8px; z-index: 1300;
+  opacity: 0; visibility: hidden; transform: translateY(-10px) scale(.97); transform-origin: top right;
+  transition: all .25s var(--ease-out);
+}
+.dropdown.open { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+.dd-head { font-size: .72rem; text-transform: uppercase; letter-spacing: .12em; color: var(--text-3); padding: 10px 12px 6px; font-weight: 700; }
+.dropdown a {
+  display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 10px;
+  font-size: .9rem; font-weight: 600; color: var(--text-2); transition: all .18s;
+}
+.dropdown a:hover { background: var(--surface-2); color: var(--text); transform: translateX(3px); }
+.dropdown a svg { width: 18px; height: 18px; opacity: .8; }
+.dropdown hr { border: 0; height: 1px; background: var(--border); margin: 8px 4px; }
+
+/* ------------------------------- DRAWER --------------------------------- */
+#scrim {
+  position: fixed; inset: 0; background: rgba(0,0,0,.6); backdrop-filter: blur(3px);
+  opacity: 0; visibility: hidden; transition: all .3s var(--ease); z-index: 1500;
+}
+#scrim.show { opacity: 1; visibility: visible; }
+#drawer {
+  position: fixed; top: 0; left: 0; bottom: 0; width: min(86vw, 320px); z-index: 1600;
+  background: var(--bg-2); border-right: 1px solid var(--border);
+  transform: translateX(-102%); transition: transform .38s var(--ease-out);
+  display: flex; flex-direction: column; box-shadow: var(--shadow);
+}
+#drawer.open { transform: translateX(0); }
+.drawer-head { display: flex; align-items: center; justify-content: space-between; padding: 16px; border-bottom: 1px solid var(--border); }
+.drawer-nav { padding: 12px; overflow-y: auto; display: flex; flex-direction: column; gap: 2px; }
+.drawer-nav a {
+  display: flex; align-items: center; gap: 14px; padding: 12px 14px; border-radius: 12px;
+  font-weight: 600; color: var(--text-2); transition: all .2s var(--ease);
+}
+.drawer-nav a:hover { background: var(--surface-2); color: var(--text); transform: translateX(4px); }
+.drawer-nav a.active { background: var(--accent-soft); color: var(--accent); }
+.drawer-nav a svg { width: 20px; height: 20px; }
+.drawer-sep { height: 1px; background: var(--border); margin: 10px 6px; }
+
+/* ------------------------------ MAIN APP -------------------------------- */
+#app { min-height: 100vh; padding-top: var(--header-h); padding-bottom: 40px; }
+.page { animation: pageIn .5s var(--ease-out); }
+.section { margin-top: clamp(18px, 2.6vw, 30px); }
+.section:empty { display: none; }
+.section + .section { margin-top: clamp(18px, 2.6vw, 30px); }
+.section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 12px; }
+.section-title { display: flex; align-items: center; gap: 12px; font-size: clamp(1.15rem, 2.4vw, 1.6rem); font-weight: 800; }
+.section-title .bar { width: 5px; height: 24px; border-radius: 4px; background: linear-gradient(var(--accent), var(--accent-2)); box-shadow: var(--glow); }
+.section-title small { display: block; font-size: .74rem; font-weight: 500; color: var(--text-3); letter-spacing: 0; margin-top: 2px; }
+.section-link { font-size: .85rem; font-weight: 700; color: var(--accent); display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; transition: gap .2s; }
+.section-link:hover { gap: 10px; }
+
+/* ------------------------------ BOTTOM NAV ------------------------------ */
+#bottomNav {
+  position: fixed; bottom: 0; left: 0; right: 0; height: var(--bottom-h); z-index: 1100;
+  display: none; align-items: stretch; justify-content: space-around;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(var(--blur)) saturate(150%);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(150%);
+  border-top: 1px solid var(--border);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+#bottomNav a {
+  flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+  font-size: .66rem; font-weight: 600; color: var(--text-3); transition: color .2s; position: relative;
+}
+#bottomNav a svg { width: 22px; height: 22px; transition: transform .3s var(--ease-spring); }
+#bottomNav a.active { color: var(--accent); }
+#bottomNav a.active svg { transform: translateY(-2px) scale(1.1); }
+#bottomNav a.active::before {
+  content: ''; position: absolute; top: 0; width: 26px; height: 3px; border-radius: 0 0 4px 4px;
+  background: var(--accent); box-shadow: var(--glow);
+}
+
+/* ------------------------------ FOOTER ---------------------------------- */
+.site-footer {
+  margin-top: 60px; padding: 40px clamp(14px, 3vw, 40px) 30px;
+  border-top: 1px solid var(--border); background: var(--bg-2);
+}
+.footer-inner { max-width: var(--maxw); margin: 0 auto; display: flex; flex-wrap: wrap; gap: 30px; justify-content: space-between; }
+.footer-brand { max-width: 340px; }
+.footer-brand p { color: var(--text-3); font-size: .85rem; margin-top: 10px; }
+.footer-cols { display: flex; flex-wrap: wrap; gap: 50px; }
+.footer-col h4 { font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; color: var(--text-3); margin-bottom: 12px; }
+.footer-col a { display: block; font-size: .88rem; color: var(--text-2); padding: 4px 0; transition: color .2s, transform .2s; }
+.footer-col a:hover { color: var(--accent); transform: translateX(3px); }
+.footer-bottom { max-width: var(--maxw); margin: 30px auto 0; padding-top: 20px; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; color: var(--text-3); font-size: .8rem; }
+
+/* ------------------------------ BACK TO TOP ----------------------------- */
+.to-top {
+  position: fixed; right: 20px; bottom: calc(var(--bottom-h) + 20px); z-index: 1050;
+  width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--surface-2); border: 1px solid var(--border); color: var(--text);
+  box-shadow: var(--shadow-sm); opacity: 0; visibility: hidden; transform: translateY(14px);
+  transition: all .3s var(--ease-spring);
+}
+.to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
+.to-top:hover { background: var(--accent); color: var(--accent-contrast); transform: translateY(-3px); }
+.to-top svg { width: 22px; height: 22px; }

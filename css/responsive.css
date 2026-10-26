@@ -1,0 +1,307 @@
+/* ============================================================================
+   ANIPULSE — responsive.css
+   Breakpoints from small phones to ultra-wide desktops
+   ========================================================================== */
+
+/* Ultra-wide */
+@media (min-width: 1900px) {
+  :root { --card-w: 200px; --maxw: 1800px; }
+}
+
+/* Large desktop */
+@media (max-width: 1400px) {
+  .detail-columns { grid-template-columns: minmax(0, 1fr) 300px; }
+}
+
+/* Small desktop / large tablet */
+@media (max-width: 1180px) {
+  .watch-layout { grid-template-columns: 1fr; }
+  .watch-side { position: static; }
+  .detail-inner { grid-template-columns: 220px minmax(0, 1fr); gap: 26px; }
+  .detail-columns { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Tablet */
+@media (max-width: 980px) {
+  .main-nav { display: none; }
+  .detail-inner { grid-template-columns: 180px minmax(0, 1fr); gap: 22px; }
+  .detail-poster { max-width: 200px; }
+  .hero { min-height: 74vh; }
+}
+
+/* Large phone / small tablet */
+@media (max-width: 820px) {
+  :root { --card-w: 150px; --rail-gap: 12px; }
+  .detail-inner { grid-template-columns: minmax(0, 1fr); }
+  .detail-poster { max-width: 180px; margin: 0 auto; }
+  .detail-main { padding-top: 10px; text-align: center; }
+  .detail-meta, .detail-actions, .detail-stats { justify-content: center; }
+  .detail-overview { margin: 0 auto; }
+  .ep-item { grid-template-columns: 120px 1fr auto; }
+  .cast-card { width: 96px; }
+  .cast-card .cc-img { width: 78px; height: 78px; }
+}
+
+/* Phone */
+@media (max-width: 640px) {
+  :root { --header-h: 58px; --card-w: 138px; --rail-gap: 10px; --radius-lg: 16px; }
+  #app { padding-bottom: calc(var(--bottom-h) + 20px); }
+  #bottomNav { display: flex; }
+  .brand-name { font-size: 1.05rem; }
+  .header-actions .icon-btn { width: 38px; height: 38px; }
+  .hero { min-height: 68vh; align-items: flex-end; }
+  .hero-content { max-width: 100%; }
+  .hero-logo { max-width: 68vw; max-height: 100px; }
+  .hero-overview { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .hero-actions .btn { flex: 1; }
+  .hero-arrow { display: none; }
+  .hero-dots { bottom: 14px; right: 14px; }
+  .section { margin-top: 18px; }
+  .section-head { flex-direction: column; align-items: flex-start; gap: 6px; margin-bottom: 10px; }
+  .section-title small { font-size: .7rem; }
+  .detail-backdrop { height: 320px; }
+  .detail-inner { padding-top: 30px; }
+  .detail-stats { gap: 8px; }
+  .stat-box { padding: 10px 14px; min-width: 78px; }
+  .stat-box .sb-val { font-size: 1.05rem; }
+  .watch-controls .btn { flex: 1 1 auto; }
+  .ep-item { grid-template-columns: 104px 1fr; gap: 10px; }
+  .ep-play { display: none; }
+  .ep-info small { -webkit-line-clamp: 1; }
+  .info-row { grid-template-columns: 1fr; gap: 3px; }
+  .to-top { bottom: calc(var(--bottom-h) + 14px); right: 14px; }
+  #toastRoot { left: 14px; right: 14px; align-items: stretch; }
+  .toast { max-width: none; }
+  .filter-bar { padding: 12px; gap: 10px; }
+  .filter-bar .fgroup { flex: 1 1 140px; }
+  .filter-bar .select { width: 100%; min-width: 0; }
+  .settings-panel { padding: 4px 16px; }
+  .setting-row { flex-direction: column; align-items: stretch; gap: 10px; padding: 14px 0; }
+  .setting-row .sr-ctrl { width: 100%; }
+  .setting-row .sr-ctrl .select, .setting-row .sr-ctrl .input, .setting-row .sr-ctrl .input-range { width: 100%; }
+  .setting-row .sr-ctrl > div { width: 100%; }
+  .setting-row:has(.switch) { flex-direction: row; align-items: center; justify-content: space-between; }
+  .setting-row:has(.switch) .sr-ctrl { width: auto; }
+  .footer-cols { gap: 28px; }
+  .modal { border-radius: 20px; }
+  .modal-head { padding: 16px 18px; }
+  .modal-body { padding: 18px; }
+  .cmdk { padding-top: 8vh; }
+  .watch-page { padding: 10px 12px 0; }
+  .player-frame { border-radius: 12px; }
+  .bar-row { grid-template-columns: 90px 1fr 40px; }
+}
+
+/* Small phone */
+@media (max-width: 420px) {
+  :root { --card-w: 124px; }
+  .brand-name { display: none; }
+  .hero-title { font-size: 1.7rem; }
+  .grid { grid-template-columns: repeat(auto-fill, minmax(124px, 1fr)); }
+  .card-wide { width: 240px; }
+  .ep-item { grid-template-columns: 92px 1fr; }
+  .detail-poster { max-width: 150px; }
+  .section-title { font-size: 1.05rem; }
+}
+
+/* Very small phone */
+@media (max-width: 360px) {
+  :root { --card-w: 112px; --fs: 15px; }
+  .hero-badges .badge { font-size: .62rem; }
+}
+
+/* Landscape phone */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero { min-height: 100vh; }
+  .hero-logo { max-height: 70px; }
+  .player-frame.theater { aspect-ratio: auto; }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+  .hero-bg img { animation: none; }
+}
+
+/* Hover-capable devices only get hover effects */
+@media (hover: none) {
+  .card-overlay { opacity: 1; background: linear-gradient(to top, rgba(0,0,0,.85) 0%, transparent 55%); }
+  .card-actions { opacity: 1; transform: none; }
+  .card-play { opacity: 1; transform: translate(-50%,-50%) scale(.9); }
+  .rail-nav { display: none; }
+}
+
+/* Print */
+@media print {
+  #header, #bottomNav, #drawer, #scrim, .to-top, #toastRoot, .rail-nav, .hero-arrow { display: none !important; }
+  #app { padding-top: 0; }
+  body { background: #fff; color: #000; }
+}
+
+/* ============================================================================
+   MOBILE WATCH — full-bleed player, large tap targets, safe areas
+   ========================================================================== */
+@media (max-width: 640px) {
+  .watch-page { padding: 6px 0 0; }
+  .watch-top, .watch-info, .watch-layout, .player-note, .source-bar, .autonext-bar {
+    margin-left: 12px; margin-right: 12px;
+  }
+  .watch-top { margin-bottom: 10px; }
+  .watch-back { padding: 6px 12px 6px 6px; }
+  .watch-back .wb-ico { width: 34px; height: 34px; }
+  .watch-back .wb-text small { max-width: 170px; }
+
+  /* Edge-to-edge 16:9 player on phones */
+  .player-shell { margin: 0; }
+  .player-frame { border-radius: 0; box-shadow: none; }
+  .player-frame iframe { display: block; }
+
+  .source-bar { flex-direction: column; align-items: stretch; padding: 10px 12px; gap: 10px; }
+  .source-left { flex: 1 1 auto; flex-wrap: wrap; }
+  .source-status { white-space: normal; line-height: 1.4; }
+  .source-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .source-actions .btn { width: 100%; min-height: 44px; justify-content: center; padding-left: 8px; padding-right: 8px; }
+  .source-actions .btn span { font-size: .8rem; }
+
+  .watch-info { margin-top: 16px; }
+  .watch-info h1 { font-size: 1.2rem; line-height: 1.25; }
+  .ep-sub { margin-bottom: 12px; font-size: .84rem; }
+
+  .watch-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .watch-controls .btn { min-height: 44px; justify-content: center; padding: 8px 10px; }
+  .watch-controls .btn span { font-size: .8rem; }
+  .watch-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .watch-nav .btn { min-height: 46px; justify-content: center; }
+
+  .watch-layout { margin-top: 22px; gap: 24px; }
+  .ep-list { gap: 8px; }
+  .ep-item { grid-template-columns: 96px 1fr; gap: 10px; padding: 8px; border-radius: 12px; }
+  .ep-item:hover { transform: none; }
+  .ep-play { display: none; }
+  .ep-overview { display: none; }
+  .ep-info b { font-size: .86rem; }
+  .ep-more { min-height: 46px; }
+
+  .autonext-bar { flex-direction: column; align-items: stretch; }
+  .autonext-bar .an-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .autonext-bar .an-actions .btn { min-height: 44px; justify-content: center; }
+
+  .player-source-card { flex-direction: column; align-items: stretch; }
+  .psc-actions { width: 100%; }
+  .psc-actions .btn { width: 100%; min-height: 44px; justify-content: center; }
+}
+
+@media (max-width: 420px) {
+  .watch-info h1 { font-size: 1.08rem; }
+  .source-badge { font-size: .66rem; padding: 4px 9px; }
+  .source-status { font-size: .74rem; }
+  .watch-controls { grid-template-columns: 1fr 1fr; }
+  .ep-item { grid-template-columns: 88px 1fr; }
+  .ep-thumb { border-radius: 8px; }
+}
+
+/* Safe-area padding for notched phones */
+@supports (padding: max(0px)) {
+  @media (max-width: 640px) {
+    .watch-page { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+  }
+}
+
+/* ============================================================================
+   LOW-MEMORY MODE — html[data-perf="low"]
+   Set by AP.detectPerf() on phones / ≤4 GB devices. Removes GPU-expensive
+   decoration while keeping every feature usable.
+   ========================================================================== */
+html[data-perf="low"] .ambient,
+html[data-perf="low"] #cursorGlow,
+html[data-perf="low"] .scroll-progress,
+html[data-perf="low"] .card-shine,
+html[data-perf="low"] .hero-arrow { display: none !important; }
+
+html[data-perf="low"] .hero-bg img { animation: none; transform: none; }
+html[data-perf="low"] .player-shell::before { display: none !important; }
+
+html[data-perf="low"] #header,
+html[data-perf="low"] .modal,
+html[data-perf="low"] .cmdk,
+html[data-perf="low"] .search-input-wrap,
+html[data-perf="low"] #searchOverlay,
+html[data-perf="low"] .player-frame { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+
+html[data-perf="low"] .card,
+html[data-perf="low"] .side-card,
+html[data-perf="low"] .ep-item {
+  content-visibility: auto;
+  contain-intrinsic-size: 280px 420px;
+}
+html[data-perf="low"] .ep-item { contain-intrinsic-size: 96px; }
+
+html[data-perf="low"] .card,
+html[data-perf="low"] .detail-poster,
+html[data-perf="low"] .player-frame { box-shadow: 0 6px 18px -10px rgba(0,0,0,.7) !important; }
+
+html[data-perf="low"] .hero { min-height: 62vh; }
+html[data-perf="low"] .section { margin-top: 16px; }
+
+/* ============================================================
+   MOBILE TAP TARGETS — every interactive control ≥ 44px
+   (WCAG 2.5.5 / Apple HIG). Applied only on touch-sized screens.
+   ============================================================ */
+@media (max-width: 820px) {
+  .btn, .btn-primary, .btn-ghost, .btn-outline, .btn-sm, .btn-lg,
+  .icon-btn, .chip, .tab, .nav-link, .section-link,
+  .card-act, .star-btn, .swatch, .ep-item, .watch-back,
+  .psc-actions .btn, .source-actions .btn {
+    min-height: 44px;
+  }
+  .btn-sm, .icon-btn { padding-top: 10px; padding-bottom: 10px; }
+  .icon-btn { min-width: 44px; width: 44px; }
+  .card-act { min-width: 44px; width: 44px; }
+  .star-btn { min-width: 44px; padding: 8px 2px; }
+  .star-btn svg { width: 22px; height: 22px; }
+  .swatch { width: 42px; height: 42px; }
+  .chip, .tab { display: inline-flex; align-items: center; }
+  /* keep dense inline text links from forcing 44px */
+  .keyword, .meta a, .breadcrumb a { min-height: 0; }
+}
+
+@media (max-width: 420px) {
+  .btn-lg { padding: 12px 18px; }
+  .swatch { width: 40px; height: 40px; }
+}
+
+/* ============================================================================
+   ADVANCED MOBILE POLISH (3 GB RAM phones)
+   Edge-to-edge media, safe areas, cheap paint, comfortable tap targets.
+   ========================================================================== */
+html { -webkit-tap-highlight-color: transparent; }
+body { overscroll-behavior-y: none; }
+
+@media (max-width: 640px) {
+  .container { padding-left: max(14px, env(safe-area-inset-left)); padding-right: max(14px, env(safe-area-inset-right)); }
+  #app { padding-bottom: calc(var(--bottom-h) + env(safe-area-inset-bottom) + 18px); }
+  .hero { min-height: 62vh; }
+  .hero-inner { padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
+  .section { margin-top: 16px; }
+  .section-head { margin-bottom: 8px; }
+  .rail-track { gap: 10px; padding-bottom: 4px; }
+  .top10-rail .rail-track { padding-bottom: 6px; }
+  .card-title { font-size: .8rem; }
+  .card-meta { font-size: .68rem; }
+  .detail-hero, .watch-page { margin-left: 0; margin-right: 0; }
+  .player-frame { border-radius: 10px; }
+  .btn, .icon-btn, .card-act { touch-action: manipulation; }
+}
+
+/* Cheaper paint on constrained devices */
+html[data-perf="low"] .card,
+html[data-perf="low"] .side-card,
+html[data-perf="low"] .schedule-item,
+html[data-perf="low"] .stream-item {
+  content-visibility: auto;
+}
+html[data-perf="low"] .section-title .bar { box-shadow: none; }
+html[data-perf="low"] .badge { box-shadow: none; }
+
+@media (prefers-reduced-motion: reduce) {
+}
